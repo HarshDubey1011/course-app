@@ -1,5 +1,4 @@
 import {useState} from 'react';
-import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
@@ -33,10 +32,12 @@ const Login = () => {
       				}).then(res=>{
       					console.log(res.data);
       					localStorage.setItem('token',res.data.token)
-      					setUser({
-      						isLoading: false,
-      						userEmail: newmail
-      					})
+						if(newmail!==null) {
+							setUser({
+								isLoading: false,
+								userEmail: newmail
+							})
+						}
       					navigate('/');
       				}).catch(err=>console.error(err));
       			}}>Login</Button>

@@ -5,19 +5,13 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import axios from 'axios';
 
-interface Course {
-	_id: string,
-	title: string,
-	description: string,
-	price: string
-	published: boolean
-}
+
 
 
 const AddCourse = () => {
 	const [title,setTitle] = useState('');
 	const [description,setDescription] = useState('');
-	const [price,setPrice] = useState(0);
+	const [price,setPrice] = useState('');
 	const [imageLink,setImageLink] = useState('');
 
 	return (

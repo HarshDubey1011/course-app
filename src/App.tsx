@@ -1,4 +1,4 @@
-import {useState,useEffect} from 'react';
+import {useEffect} from 'react';
 import {RecoilRoot,useSetRecoilState} from 'recoil';
 import {Routes, Route} from 'react-router-dom';
 import LandingPage from './components/LandingPage';

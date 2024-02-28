@@ -1,6 +1,5 @@
 import {useState,useEffect} from 'react';
 import Card from '@mui/material/Card';
-
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
@@ -10,6 +9,15 @@ import axios from 'axios';
 import {courseTitleState,courseDescriptionState,coursePriceState,courseImageState} from '../store/selectors/course.js';
 import {courseState} from '../store/atoms/course.js';
 import {useRecoilValue,useRecoilState} from 'recoil';
+
+interface courseType {
+	_id: string,
+	title: string,
+	description: string,
+	price: string,
+	imageLink: string,
+}
+
 
 const UpdateCard = () => {
 	const [courseDetails,setCourse] = useRecoilState(courseState)
@@ -22,17 +30,20 @@ const UpdateCard = () => {
   useEffect(() => {
     // Update state once courseDetails is available
     if (courseDetails.course) {
-      setTitle(courseDetails.course.title);
-      setDescription(courseDetails.course.description);
-      setImage(courseDetails.course.imageLink);
-      setPrice(courseDetails.course.price);
+      setTitle((courseDetails.course as courseType).title);
+      setDescription((courseDetails.course as courseType).description);
+      setImage((courseDetails.course as courseType).imageLink);
+      setPrice((courseDetails.course as courseType).price);
     }
   }, [courseDetails]);
 	const cardTitle = useRecoilValue(courseTitleState);
 	const cardDescription = useRecoilValue(courseDescriptionState)
 	const cardPrice = useRecoilValue(coursePriceState)
 	const cardImage = useRecoilValue(courseImageState)
-   
+	let courseId:string;
+	if(courseDetails.course!==null) {
+		courseId = (courseDetails.course as courseType)._id;
+	}   
 
 	console.log(description)
 	return (
@@ -46,7 +57,7 @@ const UpdateCard = () => {
       			<TextField id="outlined-basic" value={image} label="Image" variant="outlined" style={{marginBottom: '30px'}} onChange={(e) => setImage(e.target.value)} />
 
       			<Button variant="contained" onClick={()=>{
-      				axios.put('http://localhost:3000/admin/courses/' + courseDetails.course._id,{
+      				axios.put('http://localhost:3000/admin/courses/' + courseId,{
       					title: title,
       					description: description,
       					price: price,

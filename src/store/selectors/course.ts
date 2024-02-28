@@ -1,6 +1,13 @@
 import {selector} from 'recoil';
 import {courseState} from  '../atoms/course';
 
+interface courseType {
+	title: string,
+	description: string,
+	price: string,
+	imageLink: string,
+}
+
 export const courseLoadingState = selector({
 	key: 'courseLoadingState',
 	get: ({get}) => {
@@ -22,7 +29,7 @@ export const courseTitleState = selector({
 	get: ({get}) => {
 		const state = get(courseState);
 		if(state.course) {
-			return state.course.title;
+			return (state.course as courseType).title;
 		}
 		return "";	
 	}
@@ -33,7 +40,7 @@ export const courseDescriptionState = selector({
 	get: ({get}) => {
 		const state = get(courseState);
 		if(state.course) {
-			return state.course.description;
+			return (state.course as courseType).description;
 		}
 		return "";
 	}
@@ -44,7 +51,7 @@ export const coursePriceState = selector({
 	get: ({get}) => {
 		const state = get(courseState);
 		if(state.course) {
-			return state.course.price;
+			return (state.course as courseType).price;
 		}
 		return "";
 	}
@@ -55,7 +62,7 @@ export const courseImageState = selector({
 	get: ({get}) => {
 		const state = get(courseState);
 		if(state.course) {
-			return state.course.imageLink;
+			return (state.course as courseType).imageLink;
 		}
 		return "";
 	}

@@ -8,6 +8,15 @@ import Typography from '@mui/material/Typography';
 import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
 
+interface courseType {
+  _id: string,
+	title: string,
+	description: string,
+	price: string,
+	imageLink: string,
+}
+
+
 
 const Courses = () => {
 	const [data,setData] = useState([]);
@@ -33,23 +42,23 @@ const Courses = () => {
 	<Card sx={{ minWidth: 345 }} style={{marginRight: '15px',marginBottom: '15px'}}>
       <CardMedia
         sx={{ height: 140 }}
-        image={course.imageLink}
-        title={course.title}
+        image={(course as courseType).imageLink}
+        title={(course as courseType).title}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          {course.title}
+          {(course as courseType).title}
         </Typography>
         <Typography variant="body2" color="text.secondary">
-          {course.description}
+          {(course as courseType).description}
         </Typography>
         <Typography variant="h6" color="text.primary">
-          &#8377;{course.price}
+          &#8377;{(course as courseType).price}
         </Typography>
       </CardContent>
       <CardActions>
         <Button size="large" onClick={() => {
-        	navigate('/courses/' + course._id)
+        	navigate('/courses/' + (course as courseType)._id)
         }}>Edit</Button>
       </CardActions>
     </Card>

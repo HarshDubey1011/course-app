@@ -1,12 +1,9 @@
-import {useEffect,useState} from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
 import {useNavigate} from 'react-router-dom';
-import axios from 'axios';
 import {userEmailState} from '../store/selectors/userEmail.js';
 import {userLoadingState} from '../store/selectors/isUserLoading.js';
 import { userState } from '../store/atoms/user.js';
@@ -36,7 +33,7 @@ if(email) {
 	          <Button color="inherit" onClick={() => navigate('/courses/add')}>Add Course</Button>
 	          <Button color="inherit" onClick={() => navigate('/courses')}>Courses</Button>
 	          <Button color="inherit" onClick={() => {
-	          localStorage.setItem('token',null);
+	          localStorage.removeItem('token');
 	          setUser({
 	          	isLoading: false,
 	          	userEmail: null

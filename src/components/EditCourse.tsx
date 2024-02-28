@@ -1,5 +1,4 @@
-import {useState,useEffect} from 'react';
-import {useNavigate} from 'react';
+import {useEffect} from 'react';
 import {useParams} from 'react-router-dom';
 import axios from 'axios';
 import UpdateCard from './UpdateCard';
